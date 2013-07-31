@@ -1,23 +1,18 @@
-<div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+<section class="incomplete">
+  <h1>TODO</h1>
+  <ul>
+    <% @tasks.incompleted.each do |task| %>
+      <%= erb :_todo_li, layout: false, locals: { task: task } %>
+    <% end %>
+  </ul>
+</section>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
-</div>
+<section class="uncompleted">
+  <h1>Finished!</h1>
+  <ul>
+    <% @tasks.completed.each do |task| %>
+      <%= erb :_todo_li, layout: false, locals: { task: task } %>
+    <% end %>
+  </ul>
+</section>
+<a id="add-task" href="/tasks/new" title="add task">Add Task</a>
