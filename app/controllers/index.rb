@@ -10,7 +10,8 @@ end
 post '/tasks' do
   @task = Task.create(params[:task])
   if request.xhr?
-    erb :_todo_li, layout: false, locals: {task: @task}
+    content_type :json
+    @task.to_json
   else
     redirect to '/'
   end
